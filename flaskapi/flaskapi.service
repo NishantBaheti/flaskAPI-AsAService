@@ -1,0 +1,14 @@
+[Unit]
+Description=Flask API running as a service in Ubuntu 16-04.
+After=network.target
+
+[Service]
+User=nishant
+WorkingDirectory=/opt/flaskAPI-AsAService/flaskapi
+Environment="PATH=/opt/flaskAPI-AsAService/flaskapi/bin"
+ExecStart=/opt/flaskAPI-AsAService/flaskapi/bin/gunicorn -b 0.0.0.0:8081 -w 4 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
